@@ -6,6 +6,10 @@ CREATE TABLE Students (
     registration_date DATE DEFAULT CURRENT_DATE
 );
 
+CREATE TABLE Departments (
+    id SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(64) NOT NULL
+);
 CREATE TABLE Teachers (
     id SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(32) NOT NULL,
@@ -22,32 +26,55 @@ CREATE TABLE Subjects (
     FOREIGN KEY(teacher_id) REFERENCES Teachers(id)
 );
 
+CREATE TABLE Courses (
+    id SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    course_name VARCHAR(64) NOT NULL,
+    course_description TEXT NOT NULL,
+    department_id SMALLINT UNSIGNED NOT NULL,
+    FOREIGN KEY(department_id) REFERENCES Departments(id)
+);
+
 -- Visual, Auditory, Read/Write, and Kinaesthetic
--- this will be added by the reports generated after the students aptitude test using triggers
+-- this will be added by the teachers
 CREATE TABLE Learning_styles (
     id SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     student_id SMALLINT UNSIGNED NOT NULL,
     style ENUM('Visual', 'Auditory', 'Read/Write', 'Kinaesthetic'),
 );
 
+CREATE TABLE Placement_test (
+    id SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    student_id SMALLINT UNSIGNED NOT NULL,
+    test_subject_id SMALLINT UNSIGNED NOT NULL,
+    score FLOAT(3,3) NOT NULL,
+    FOREIGN KEY(subject_id) REFERENCES Students(id),
+    FOREIGN KEY(test_subject_id) REFERENCES Subjects(id)
+);
+
+-- report will be generated on a trigger
+CREATE TABLE Recommendations (
+    id SMALLINT UNSIGNED AUTO_INCREMENT Primary KEY,
+    student_id SMALLINT UNSIGNED NOT NULL,
+    recommended_department_id SMALLINT UNSIGNED NOT NULL,
+    report TEXT NOT NULL,
+    FOREIGN KEY(student_id) REFERENCES Students(id),
+    FOREIGN KEY(recommended_course_id) REFERENCES Courses(id)
+    FOREIGN KEY (recommended_department_id) REFERENCES Departments(id)
+);
+
 -- will be updated based on the exams results using a trigger
 -- current_level will be determined after comparing students grade, marks in a subject with a preset criteria in a trigger
 CREATE TABLE Subjects_good_at (
     id SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    student_id MALLINT UNSIGNED NOT NULL,
     subject_id SMALLINT UNSIGNED NOT NULL,
     current_level ENUM('Beginner', 'Intermediate', 'Advanced'),
-    FOREIGN KEY(subject_id) REFERENCES subjects(id)
-);
-
-CREATE TABLE Courses (
-    id SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    course_name VARCHAR(64) NOT NULL,
-    course_description TEXT NOT NULL,
-    subjects_id SET(SELECT id FROM subjects),
+    FOREIGN KEY(subject_id) REFERENCES subjects(id),
+    FOREIGN KEY(student_id) REFERENCES students(id)
 );
 
 -- junction table to add subjects for the course
-CREATE TABLE course_subjects (
+CREATE TABLE Course_Subjects (
     id SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     course_id SMALLINT UNSIGNED NOT NULL,
     subject_id SMALLINT UNSIGNED NOT NULL,
@@ -55,7 +82,7 @@ CREATE TABLE course_subjects (
     FOREIGN KEY (subject_id) REFERENCES Subjects(id) 
 );
 
-CREATE TABLE enrollments (
+CREATE TABLE Enrollments (
     id SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     student_id UNSIGNED AUTO_INCREMENT NOT NULL,
     course_id UNSIGNED AUTO_INCREMENT NOT NULL,
@@ -84,25 +111,9 @@ CREATE TABLE Submissions (
     FOREIGN KEY(student_id) REFERENCES Students(id)
 );
 
--- TODO :
--- conduct an a placement test (TABLE)
-
-CREATE TABLE Placement_test (
+CREATE TABLE Exams (
     id SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    student_id SMALLINT UNSIGNED NOT NULL,
-    test_subject_id SMALLINT UNSIGNED NOT NULL,
-    grade ENUM('A+','A-','B+','B-','C','C-','D','D-','F'),
-    proficiency_level ENUM('Beginner', 'Intermediate', 'Advanced'),
-    FOREIGN KEY(subject_id) REFERENCES Students(id),
-    FOREIGN KEY(test_subject_id) REFERENCES Subjects(id)
-);
-
--- report will be generated on a trigger
-CREATE TABLE Recommendations (
-    id SMALLINT UNSIGNED AUTO_INCREMENT Primary KEY,
-    student_id SMALLINT UNSIGNED NOT NULL,
-    recommended_course_id SMALLINT UNSIGNED NOT NULL,
-    report TEXT NOT NULL,
-    FOREIGN KEY(student_id) REFERENCES Students(id),
-    FOREIGN KEY(recommended_course_id) REFERENCES Courses(id)
+    subject_id SMALLINT UNSIGNED NOT NULL,
+    exam_data DATETIME DEFAULT CURRENT_DATETIME,
+    scores FLOAT(3,3) NOT NULL
 );
