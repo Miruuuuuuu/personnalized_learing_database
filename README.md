@@ -1,7 +1,8 @@
 # Personalized Learning System
 ## TODO 1:
 ### UPDATE RECOMMENDATIONS TABLE AND SUJECTS_GOOD_AT TABLES BASED ON THE PLACEMENT TEST RESULTS:
-    1. A placement_test(placement test is a table) will be conducted, and based on the scores of the students in different subjects, a department 2. has to be recommended.
+    1. A placement_test(placement test is a table) will be conducted, and based on the scores of the students in different subjects, a department.
+    2. has to be recommended.
     3. placement test will be conducted for all the subjects.
 
 #### Updating Subjects_good_at TABLE
@@ -14,5 +15,5 @@
         if score<=60 -> Beginner
     5. all of this has to be done by a trigger.
 #### Updating  Recommendations TABLE
-    1. TODO
+    1. 
 
