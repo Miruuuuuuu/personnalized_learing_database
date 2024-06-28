@@ -11,6 +11,14 @@ CREATE TABLE Departments (
     name VARCHAR(64) NOT NULL
 );
 
+CREATE TABLE Student_department (
+    id SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    student_id SMALLINT UNSIGNED  NOT NULL,
+    department_id SMALLINT UNSIGNED  NOT NULL,
+    FOREIGN KEY(student_id) REFERENCES Students(id),
+    FOREIGN KEY(department_id) REFERENCES Departments(id)
+);
+
 CREATE TABLE Teachers (
     id SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(32) NOT NULL,
