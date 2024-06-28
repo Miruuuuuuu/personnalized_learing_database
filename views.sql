@@ -54,4 +54,27 @@ LEFT JOIN Departments ON Student_department.department_id = Departments.id
 LEFT JOIN Exams ON Students.id = Exams.student_id
 LEFT JOIN Subjects ON Exams.subject_id = Subjects.id;
 
-
+-- view for assignment submissions
+CREATE VIEW Assignment_Submissions_View AS
+SELECT 
+    Submissions.id AS submission_id,
+    Submissions.assignment_id,
+    Assignments.description AS assignment_description,
+    Assignments.due_date AS assignment_due_date,
+    Submissions.student_id,
+    Students.name AS student_name,
+    Submissions.submission_datetime,
+    Submissions.grade,
+    Submissions.feedback,
+    Subjects.subject AS subject_name,
+    Courses.course_name AS course_name
+FROM 
+    Submissions
+JOIN 
+    Assignments ON Submissions.assignment_id = Assignments.id
+JOIN 
+    Students ON Submissions.student_id = Students.id
+JOIN 
+    Subjects ON Assignments.subject_id = Subjects.id
+JOIN 
+    Courses ON Assignments.course_id = Courses.id;

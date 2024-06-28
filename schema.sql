@@ -125,3 +125,19 @@ CREATE TABLE Exams (
     score FLOAT(3,3) NOT NULL,
     FOREIGN KEY (subject_id) REFERENCES Subjects(id)
 );
+
+
+CREATE VIEW Student_Recommendations_View AS
+SELECT 
+    Recommendations.id AS recommendation_id,
+    Recommendations.student_id,
+    Students.name AS student_name,
+    Recommendations.recommended_department_id,
+    Departments.name AS department_name,
+    Recommendations.report AS recommendation_report
+FROM 
+    Recommendations
+JOIN 
+    Students ON Recommendations.student_id = Students.id
+JOIN 
+    Departments ON Recommendations.recommended_department_id = Departments.id;
