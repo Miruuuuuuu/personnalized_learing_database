@@ -50,14 +50,23 @@ END//
 DELIMITER ;
 
 -- TODO FOR SAAD
+--     ____________CHANGES TO BE  MADE_________________
+--          "make the report more detailed communicate with the student, "            
+--          "mention their name in reporting"
+--          "for example: XYZ here is your test report"
+--          "report the students score compared to every other"
+--          "add messages (encouraging, or imporvements)"
+
+
+
 
 -- Create a trigger that would insert into recommendations table
 -- understand the below conditional
--- IF highest_score >= 90 AND highest_score <= 100 THEN
+-- IF highest_score >= 0.85 AND highest_score <= 0.99 THEN
         --     SET v_current_level = 'Advanced';
-        -- ELSEIF highest_score >= 65 AND highest_score < 90 THEN
+        -- ELSEIF highest_score >= 0.50 AND highest_score < 0.85 THEN
         --     SET v_current_level = 'Intermediate';
-        -- ELSEIF highest_score < 65 THEN
+        -- ELSEIF highest_score < 0.50 THEN
         --     SET v_current_level = 'Beginner';
         -- END IF;
 -- Now in report that is of type text consider the mention the following :
@@ -66,7 +75,7 @@ DELIMITER ;
     -- recommended departments(check scores in different subjects) to do this.
         -- FOR example if the student scored best in subjects "Computer Science", "Matematics", "Engineering Design" ,
         -- "physics" than recommed departments like physics, computer science, mathematics
-    
+        
 -- Lastly remember that this report is a column in recommendations table, and this is a TEXT type, you will need to
 -- concatinate TEXT to from a report
 -- you have free hand to add anything meaning full you'd like to the report.

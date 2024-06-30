@@ -1,11 +1,17 @@
+-- TODO SAAD and ABDULLAH
 
-SELECT 
-    Students.name AS student_name, 
-    Departments.name AS department_name, 
-    Learning_styles.style AS learning_style,
-    Subjects.name AS subject_name
-FROM Students 
-JOIN Student_department ON Students.id = Student_department.student_id
-JOIN Departments ON Student_department.department_id = Departments.id
-JOIN Learning_styles ON Students.id = Learning_styles.student_id
-JOIN Subjects ON Subjects.id = Learning_styles.subject_id;
+-- atleast 10 SELECT stamtments each, about the data that the user(student) may query for
+-- EXAMPLE
+-- 1. student may query for his learning style
+
+-- 2. student may query for all the courses he/ she is enrolled in and all the subjects in that courses.
+
+-- 3. student may query for their pending assignmnets
+
+-- 4. students may query for their general details, like department, enrollment date etc
+
+-- the list goes on ...........
+
+-- write a few UPDATE and DELELTE statements of your choice as well.
+
+-- NOTE : donot execute the updates or delete statements, just write the queries here. 
