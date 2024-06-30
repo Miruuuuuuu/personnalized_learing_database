@@ -40,7 +40,6 @@ JOIN Subjects ON Assignments.subject_id = Subjects.id
 JOIN Courses ON Assignments.course_id = Courses.id
 JOIN Submissions ON Assignments.id = Submissions.assignment_id AND Students.id = Submissions.student_id;
 
-
 CREATE VIEW student_exam_results AS
 SELECT 
     Students.name AS `Student Name`,
@@ -78,3 +77,20 @@ JOIN
     Subjects ON Assignments.subject_id = Subjects.id
 JOIN 
     Courses ON Assignments.course_id = Courses.id;
+
+
+
+CREATE VIEW Student_Recommendations_View AS
+SELECT 
+    Recommendations.id AS recommendation_id,
+    Recommendations.student_id,
+    Students.name AS student_name,
+    Recommendations.recommended_department_id,
+    Departments.name AS department_name,
+    Recommendations.report AS recommendation_report
+FROM 
+    Recommendations
+JOIN 
+    Students ON Recommendations.student_id = Students.id
+JOIN 
+    Departments ON Recommendations.recommended_department_id = Departments.id;

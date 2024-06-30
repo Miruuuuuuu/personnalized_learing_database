@@ -37,10 +37,7 @@ END //
 
 DELIMITER ;
 
-
 DELIMITER //
-
---update student's assignment grade
 CREATE PROCEDURE UpdateAssignmentGrade(
     IN submissionId SMALLINT UNSIGNED,
     IN newGrade ENUM('A+', 'A-', 'B+', 'B-', 'C', 'C-', 'D', 'D-', 'F')
@@ -52,10 +49,7 @@ BEGIN
 END //
 
 DELIMITER ;
-
-
 DELIMITER //
-
 -- read student's assignments
 CREATE PROCEDURE GetStudentAssignments(
     IN studentId SMALLINT UNSIGNED
@@ -76,5 +70,35 @@ BEGIN
     WHERE 
         Assignments.student_id = studentId;
 END //
-
 DELIMITER ;
+
+-- authenticate 
+DELIMITER //
+CREATE PROCEDURE `authenticate` (
+    IN p_name VARCHAR(32),
+    IN p_password VARCHAR(64),
+    OUT login_check INT
+) 
+BEGIN 
+    DECLARE username VARCHAR(32);
+    DECLARE password_ VARCHAR(64);
+
+    -- Fetch the username and password from the Students table where the name matches
+    SELECT name, password INTO username, password_
+    FROM Students
+    WHERE name = p_name;
+
+    -- Check if the provided name and password match the fetched values
+    IF p_name = username AND p_password = password_ THEN
+        SET login_check = 1;
+    ELSE
+        SET login_check = 0;
+    END IF;
+END //
+DELIMITER ;
+
+
+SELECT ROUTINE_NAME
+FROM information_schema.ROUTINES
+WHERE ROUTINE_TYPE = 'VIEWS'
+AND ROUTINE_SCHEMA = 'personalized_learning_system';

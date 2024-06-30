@@ -1,5 +1,4 @@
 DELIMITER //
-
 CREATE TRIGGER `add_subjects_good_at`
 AFTER INSERT ON Placement_tests
 FOR EACH ROW
@@ -17,7 +16,7 @@ BEGIN
     SELECT COUNT(*) INTO total_subjects_recorded_in_placement_tests
     FROM Placement_tests WHERE student_id = NEW.student_id;
 
-    IF total_subjects = total_subjects_recorded_in_placement_tests THEN
+    IF total_subjects_recorded_in_placement_tests >= 1 THEN
     
         -- Reading highest score
         SELECT score INTO highest_score 
@@ -27,11 +26,11 @@ BEGIN
         LIMIT 1;
 
         -- Checking for student's proficiency level
-        IF highest_score >= 90 AND highest_score <= 100 THEN
+        IF highest_score >= 0.85 AND highest_score <= 0.99 THEN
             SET v_current_level = 'Advanced';
-        ELSEIF highest_score >= 65 AND highest_score < 90 THEN
+        ELSEIF highest_score >= 0.50 AND highest_score < .85 THEN
             SET v_current_level = 'Intermediate';
-        ELSEIF highest_score < 65 THEN
+        ELSEIF highest_score < 0.50 THEN
             SET v_current_level = 'Beginner';
         END IF;
         
