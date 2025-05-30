@@ -121,9 +121,9 @@
         FOREIGN KEY (student_id) REFERENCES Students(id)
     );
 
-    CREATE TABLE Exams (
-        id SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        subject_id SMALLINT UNSIGNED NOT NULL,
-        exam_date DATETIME DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (subject_id) REFERENCES Subjects(id)
-    );
+    -- CREATE TABLE Exams (
+    --     id SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    --     subject_id SMALLINT UNSIGNED NOT NULL,
+    --     exam_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    --     FOREIGN KEY (subject_id) REFERENCES Subjects(id)
+    -- );

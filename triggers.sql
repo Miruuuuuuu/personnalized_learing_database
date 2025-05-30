@@ -1,6 +1,6 @@
 -- CORRECTED TRIGGER VERSION
 DELIMITER //
-CREATE TRIGGER `add_subjects_good_at`
+CREATE TRIGGER `subject_proficiency`
 AFTER INSERT ON Placement_tests
 FOR EACH ROW
 BEGIN
