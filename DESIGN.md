@@ -7,11 +7,11 @@ Video overview: <URL HERE>
 ## Scope
 
 * What is the purpose of your database?
-The purpose of my database is to provide a personalized learning experience for students where they can get personalized feedback and reports based on their performance, Apart from just enrolling students in a course, grading their assignments etc, the system provides an insightful feedback to the students regarding their performance for an enhanced performance analysis, and some recommendations based on their placement tests
+The purpose of my database is to provide a personalized learning experience for students where they can get personalized feedback and reports based on their performance, Apart from just enrolling students in a course, grading their assignments etc, the system provides an insightful feedback to students regarding their performance for an enhanced performance analysis, and some recommendations based on their placement tests.
 
 
 * Which people, places, things, etc. are you including in the scope of your database?
-1. Students, their placement tests, Learning styles, Recommendations based on their placement tests, departments, courses they are enrolled in.  
+1. Students, their placement tests, Learning styles, Recommendations based on their placement tests, departments, and courses they are enrolled in.  
 2. Teachers, the subjects they teach.  
 3. Deprtments, each department offers courses.  
 4. Subjects, each subject is part of some course.  
@@ -20,18 +20,20 @@ The purpose of my database is to provide a personalized learning experience for 
 7. Exam, exams conducted at the end of course.  
 
 * Which people, places, things, etc. are *outside* the scope of your database?
-1. Although the database is designed very well for its core functionality, but it has certain constraints.  
-2. The system is not designed cover the internal management of the institution that is using this database very well.  
-3. The system does not include tables to track the management heirarchy, it is left upon the institue.  
-4. The exams are conducted, but on a very small scale, the users of the database are open to alter exams structuring if they prefer a thorough examination system.  
+1. Although the database is designed very well for its core functionality, but it has a few constraints.  
+2. The system is not designed cover the internal management of the institution that is using this database.  
+3. The system does not include tables to track the management heirarchy, it is left upon the institution.  
+4. The exams are conducted, but on a very small scale, the users of the database are welcome to alter exams functionality if they prefer a thorough examination system.  
 5. A mechanism to track learning_style is created, for simplicity it is left on the teachers to track the learning styles of the students.  
 
 ## Functional Requirements
 In this section you should answer the following questions:
 
 * What should a user be able to do with your database?
-1. The user(primary user is the student) will be able to register and take placement test or register for some courses, after student has enrolled their progress is monitored regular assignments have to be submitted by the them.  
-2. And for the placement test, the student can take a placement test on variety of subjects to determine their best, based on this test, a report is generated that covers variety of matrices such as their average score, their best score, their best subject, and based on the results of thier placement tests departments are recommended, and the subject they scored best in is tracked as thier strongest_subject.
+
+1. The user(primary user is the student) will be able to register and take placement test or register for some courses, after student has enrolled their progress is monitored, regular assignments have to be submitted by the them.
+
+2. For the placement tests, the student can take a placement test on variety of subjects to determine their best, based on this test, a report is generated that covers variety of matrices such as their average score, their best score, their best subject, and based on the results of thier placement tests departments are recommended, and the subject they scored best in is tracked as thier strongest_subject.
 
 3. Another user of this database is the teacher, teachers can post assignments and grade submissions by the students, teachers also have the reponsibilty of tracking learning styles of the students, and update the database for each student.  
 
@@ -47,15 +49,15 @@ In this section you should answer the following questions:
 In this section you should answer the following questions:
 
 * Which entities will you choose to represent in your database?
-1. Students
-2. Teachers
-3. Departments 
-4. Courses
-5. Subjects
-6. Placement_tests
-7. Assignments
-8. Exams
-9. Learning Styles
+1.  Students
+2.  Teachers
+3.  Departments 
+4.  Courses
+5.  Subjects
+6.  Placement tests
+7.  Assignments
+8.  Exams
+9.  Learning styles
 10. Recommendations  
 11. Enrollments 
 
@@ -100,6 +102,7 @@ In this section you should answer the following questions:
   * student_id
   * subject_id
   * course_id
+  * description
   * due_date
 
 * Exams
@@ -128,8 +131,8 @@ In this section you should answer the following questions:
 
 * Why did you choose the types you did?  
   1. Primary keys are represented by an __UNSIGNED SMALLINT__, 
-  in this range 65535 different records can be represented, this is the scale for which the database is designed for aswell, this parameter can be altered, it's up to the user.  
-  2. Another notable type used is the __ENUM__ (enumeration) data type that restricts the data that can be added to the perticular column.
+  in this range 65535 different records can be represented, this is the scale for which the database is designed for aswell, this parameter can be changed, it's up to the user.  
+  2. Another notable type used is the __ENUM__ (enumeration) data type that restricts the data that can be added to the particular column.
   3. For detailed reportings __TEXT__ type is used to allocate sufficient space for detail reporting.  
   4. __DATETIME__ for accurate timings, used for due dates(assignments) etc.  
   5. __DATE__ for date_of_birth where specific hours may not be necessery.  

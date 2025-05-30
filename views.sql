@@ -7,6 +7,7 @@ SELECT
     Subjects.subject AS `Strongest Subject`
 FROM 
     Students
+
 LEFT JOIN Student_department ON Students.id = Student_department.student_id
 LEFT JOIN Departments ON Student_department.department_id = Departments.id
 LEFT JOIN Learning_styles ON Students.id = Learning_styles.student_id
@@ -21,7 +22,6 @@ LEFT JOIN (
         student_id
 ) AS Best_Scores ON Students.id = Best_Scores.student_id
 LEFT JOIN Subjects ON Best_Scores.subject_id = Subjects.id;
-
 
 --assignment information
 CREATE VIEW student_assignment_info AS
