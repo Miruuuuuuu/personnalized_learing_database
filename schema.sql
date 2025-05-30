@@ -12,6 +12,7 @@
         name VARCHAR(64) NOT NULL
     );
 
+    -- junction table
     CREATE TABLE Student_department (
         id SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         student_id SMALLINT UNSIGNED  NOT NULL,
@@ -26,10 +27,10 @@
         email VARCHAR(64) NOT NULL,
         category ENUM('Assistant Professor', 'Associate Professor', 'Professor')
     );
-
+    
     CREATE TABLE Subjects (
         id SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        subject VARCHAR(64) NOT NULL,
+        subject_name VARCHAR(64) NOT NULL,
         subject_description TEXT NOT NULL,
         teacher_id SMALLINT UNSIGNED NOT NULL,
         FOREIGN KEY (teacher_id) REFERENCES Teachers(id)
